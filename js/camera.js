@@ -1,12 +1,32 @@
 var camera;
 
-function createCamera() {
+function createFrontCamera() {
 	'use strict';
 	
-	camera = new THREE.PerspectiveCamera(70, window.innerWidth / window.innerHeight, 1, 1000);
-	camera.position.x = 50;
-	camera.position.y = 50;
+	camera = new THREE.OrthographicCamera(-window.innerWidth /  2, window.innerWidth / 2, window.innerHeight / 2, -window.innerHeight /  2, 1, 1000);
+	camera.position.x = 0;
+	camera.position.y = 0;
 	camera.position.z = 50;
+	camera.lookAt(scene.position);
+}
+
+function createSideCamera() {
+	'use strict';
+	
+	camera = new THREE.OrthographicCamera(-window.innerWidth /  2, window.innerWidth / 2, window.innerHeight / 2, -window.innerHeight /  2, 1, 1000);
+	camera.position.x = 50;
+	camera.position.y = 0;
+	camera.position.z = 0;
+	camera.lookAt(scene.position);
+}
+
+function createTopCamera() {
+	'use strict';
+	
+	camera = new THREE.OrthographicCamera(-window.innerWidth /  2, window.innerWidth / 2, window.innerHeight / 2, -window.innerHeight /  2, 1, 1000);
+	camera.position.x = 0;
+	camera.position.y = 50;
+	camera.position.z = 0;
 	camera.lookAt(scene.position);
 }
 
