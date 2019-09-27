@@ -1,42 +1,31 @@
-var camera;
+var FrontCamera, SideCamera, TopCamera;
 
 function createFrontCamera() {
 	'use strict';
 	
-	camera = new THREE.OrthographicCamera(-window.innerWidth /  2, window.innerWidth / 2, window.innerHeight / 2, -window.innerHeight /  2, 1, 1000);
-	camera.position.x = 0;
-	camera.position.y = 0;
-	camera.position.z = 50;
-	camera.lookAt(scene.position);
+	FrontCamera = new THREE.OrthographicCamera(-window.innerWidth /  8, window.innerWidth / 8, window.innerHeight / 8, -window.innerHeight /  8, 1, 1000);
+	FrontCamera.position.x = 0;
+	FrontCamera.position.y = 0;
+	FrontCamera.position.z = 50;
+	FrontCamera.lookAt(scene.position);
 }
 
 function createSideCamera() {
 	'use strict';
 	
-	camera = new THREE.OrthographicCamera(-window.innerWidth /  2, window.innerWidth / 2, window.innerHeight / 2, -window.innerHeight /  2, 1, 1000);
-	camera.position.x = 50;
-	camera.position.y = 0;
-	camera.position.z = 0;
-	camera.lookAt(scene.position);
+	SideCamera = new THREE.OrthographicCamera(-window.innerWidth /  8, window.innerWidth / 8, window.innerHeight / 8, -window.innerHeight /  8, 1, 1000);
+	SideCamera.position.x = 50;
+	SideCamera.position.y = 0;
+	SideCamera.position.z = 0;
+	SideCamera.lookAt(scene.position);
 }
 
 function createTopCamera() {
 	'use strict';
 	
-	camera = new THREE.OrthographicCamera(-window.innerWidth /  2, window.innerWidth / 2, window.innerHeight / 2, -window.innerHeight /  2, 1, 1000);
-	camera.position.x = 0;
-	camera.position.y = 50;
-	camera.position.z = 0;
-	camera.lookAt(scene.position);
-}
-
-function onResize() {
-	'use strict';
-	
-	renderer.setSize(window.innerWidth, window.innerHeight);
-	
-	if (window.innerHeight > 0 && window.innerWidth > 0) {
-		camera.aspect = renderer.getSize().width / renderer.getSize().height;
-		camera.updateProjectionMatrix();
-	}
+	TopCamera = new THREE.OrthographicCamera(-window.innerWidth /  8, window.innerWidth / 8, window.innerHeight / 8, -window.innerHeight /  8, 1, 1000);
+	TopCamera.position.x = 0;
+	TopCamera.position.y = 50;
+	TopCamera.position.z = 0;
+	TopCamera.lookAt(scene.position);
 }
