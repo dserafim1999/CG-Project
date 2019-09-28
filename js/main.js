@@ -27,10 +27,9 @@ function onKeyDown(e) {
 
 function onResize() {
 	'use strict';
-	
-	scene.activeCamera.aspect = renderer.getSize().width / renderer.getSize().height;
-	scene.activeCamera.updateProjectionMatrix();
 	renderer.setSize(window.innerWidth, window.innerHeight);
+	scene.activeCamera.aspect = (renderer.getSize().width / renderer.getSize().height);
+	scene.activeCamera.updateProjectionMatrix();
 }
 
 
@@ -42,6 +41,7 @@ function createScene() {
 	scene.add(new THREE.AxisHelper(10));
 	
 	createRobot(0, 0, 0);
+	createTarget(50, -5, 0);
 	//createTarget(0, 0, 0);
 }
 

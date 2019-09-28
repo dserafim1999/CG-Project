@@ -24,7 +24,7 @@ function createRobot(x, y, z) {
 
 	robot.base.add(robot.arm);
 	robot.add(robot.base);
-	robot.position.set(0, 0, 0);
+	robot.position.set(-50, 0, 0);
 
 	scene.add(robot);
 }
