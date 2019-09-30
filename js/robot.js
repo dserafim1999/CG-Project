@@ -4,28 +4,29 @@ var geometry, material, mesh;
 
 var robot;
 
-var speed = 0.5, rotationSpeed = 0.05;
+var speed = 0.5,
+	rotationSpeed = 0.05;
 
-
-function robotMovement(){
+function robotMovement() {
 	'use strict';
 
-	if(robot.movement.up)
-		robot.position.x += speed;
-	if(robot.movement.down)
-		robot.position.x -= speed;
-	if(robot.movement.left)
-		robot.position.z -= speed;
-	if(robot.movement.right)
-		robot.position.z += speed;
-	if(robot.base.mainJoint.rotating.anticlockwise)
-		robot.arm.rotation.y += rotationSpeed;
-	if(robot.base.mainJoint.rotating.clockwise)
-		robot.arm.rotation.y -= rotationSpeed;
-	if(robot.arm.rotating.anticlockwise)
-		robot.arm.rotation.z += rotationSpeed;
-	if(robot.arm.rotating.clockwise)
-		robot.arm.rotation.z -= rotationSpeed;
+	if (robot.movement.up) robot.position.x += speed;
+	if (robot.movement.down) robot.position.x -= speed;
+	if (robot.movement.left) robot.position.z -= speed;
+	if (robot.movement.right) robot.position.z += speed;
+	if (robot.base.mainJoint.rotating.anticlockwise) robot.arm.rotation.y += rotationSpeed;
+	if (robot.base.mainJoint.rotating.clockwise) robot.arm.rotation.y -= rotationSpeed;
+	if (robot.arm.rotating.anticlockwise) {
+		if (robot.arm.rotation.z > Math.PI / -4) {
+			robot.arm.rotation.z -= rotationSpeed;
+		}
+	}
+	if (robot.arm.rotating.clockwise) {
+		if (robot.arm.rotation.z < Math.PI / 4) {
+			robot.arm.rotation.z += rotationSpeed;
+			//robot.arm.rotation = new THREE.Vector3(0, 0, rotationSpeed);
+		}
+	}
 }
 
 function createRobot(x, y, z) {
