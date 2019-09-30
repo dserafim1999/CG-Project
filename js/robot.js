@@ -63,7 +63,7 @@ function createBase() {
 
 	createTableTop(base, 0, 0, 0);
 	createWheels(base);
-	base.mainJoint = createMainJoint(base, 0, 4, 0);
+	base.mainJoint = createMainJoint(base, 0, 1, 0);
 
 	// With this we will control the rotation of the mainJoint.
 	base.mainJoint.rotating = {
@@ -76,7 +76,7 @@ function createBase() {
 
 function createTableTop(base, x, y, z) {
 	'use strict';
-	material = new THREE.MeshBasicMaterial({ color: 0x00ff00, wireframe: true });
+	material = new THREE.MeshBasicMaterial({ color: 0xff0000, wireframe: true });
 	geometry = new THREE.CubeGeometry(40, 2, 20);
 	mesh = new THREE.Mesh(geometry, material);
 
@@ -86,15 +86,15 @@ function createTableTop(base, x, y, z) {
 
 function createWheels(base) {
 	'use strict';
-	createWheel(base, -20, -3, 10);
-	createWheel(base, 20, -3, -10);
-	createWheel(base, -20, -3, -10);
-	createWheel(base, 20, -3, 10);
+	createWheel(base, -15, -3, 7.5);
+	createWheel(base, 15, -3, -7.5);
+	createWheel(base, -15, -3, -7.5);
+	createWheel(base, 15, -3, 7.5);
 }
 
 function createWheel(base, x, y, z) {
 	'use strict';
-	material = new THREE.MeshBasicMaterial({ color: 0x0000ff, wireframe: true });
+	material = new THREE.MeshBasicMaterial({ color: 0xffffff, wireframe: true });
 	geometry = new THREE.SphereGeometry(2, 10, 10);
 	mesh = new THREE.Mesh(geometry, material);
 	mesh.position.set(x, y, z);
@@ -108,8 +108,9 @@ function createMainJoint(base, x, y, z) {
 	for (var i = 0; i < 10; i++) {
 		points.push(new THREE.Vector2(Math.sin(i * 0.2) * 10 + 5, (i - 5) * 2));
 	}
-	material = new THREE.MeshBasicMaterial({ color: 0x0000ff, wireframe: true });
-	geometry = new THREE.LatheGeometry(points);
+	material = new THREE.MeshBasicMaterial({ color: 0xffffff, wireframe: true });
+	geometry = new THREE.SphereGeometry(15, 10, 10, Math.PI / 2, Math.PI * 2, Math.PI / 2, Math.PI);
+	//geometry = new THREE.LatheGeometry(points);
 	mesh = new THREE.Mesh(geometry, material);
 	mainJoint.add(mesh);
 	mainJoint.scale.set(0.4, 0.4, 0.4);
@@ -126,7 +127,7 @@ function createArm() {
 	material = new THREE.MeshBasicMaterial({ color: 0xff0000, wireframe: true });
 
 	var arm = new THREE.Object3D();
-	var lowerStick = createStick(0, 11, 0);
+	var lowerStick = createStick(0, 15, 0);
 	var lowerArmJoint = createArmJoint(0, 12.5, 0);
 	var upperStick = createStick(12.5, 0, 0);
 	var upperArmJoint = createArmJoint(0, -12.5, 0);
@@ -164,7 +165,7 @@ function createArm() {
 function createStick(x, y, z) {
 	'use strict';
 	var stick = new THREE.Object3D();
-	material = new THREE.MeshBasicMaterial({ color: 0xf0000f, wireframe: true });
+	material = new THREE.MeshBasicMaterial({ color: 0xff0000, wireframe: true });
 	geometry = new THREE.CubeGeometry(3, 20, 3);
 	mesh = new THREE.Mesh(geometry, material);
 	stick.add(mesh);
@@ -175,7 +176,7 @@ function createStick(x, y, z) {
 function createArmJoint(x, y, z) {
 	'use strict';
 	var armJoint = new THREE.Object3D();
-	material = new THREE.MeshBasicMaterial({ color: 0xea00af, wireframe: true });
+	material = new THREE.MeshBasicMaterial({ color: 0xffffff, wireframe: true });
 	geometry = new THREE.SphereGeometry(3, 10, 10);
 	mesh = new THREE.Mesh(geometry, material);
 	armJoint.add(mesh);
@@ -198,7 +199,7 @@ function createHand(x, y, z) {
 
 function createPalm(hand, x, y, z) {
 	'use strict';
-	material = new THREE.MeshBasicMaterial({ color: 0xaaaa00, wireframe: true });
+	material = new THREE.MeshBasicMaterial({ color: 0xff0000, wireframe: true });
 	geometry = new THREE.CubeGeometry(15, 2, 15);
 	mesh = new THREE.Mesh(geometry, material);
 
@@ -213,7 +214,7 @@ function createFingers(hand) {
 
 function createFinger(hand, x, y, z) {
 	'use strict';
-	material = new THREE.MeshBasicMaterial({ color: 0xbbddcc, wireframe: true });
+	material = new THREE.MeshBasicMaterial({ color: 0xffffff, wireframe: true });
 	geometry = new THREE.CubeGeometry(2, 10, 2);
 	mesh = new THREE.Mesh(geometry, material);
 
